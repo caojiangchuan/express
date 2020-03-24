@@ -1,5 +1,4 @@
-const mysql = require('mysql');
-// const connection = require('./connect');
+const connection = require('../bin/mysql');
 const express = require('express');
 var bodyParser = require('body-parser');
 // const app = express();
@@ -12,12 +11,7 @@ var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '123456',
-    database: 'nodemysql'
-});
+
 console.log(connection);
 
 var sql = 'SELECT * FROM posts';
