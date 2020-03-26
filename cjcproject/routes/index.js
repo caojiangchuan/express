@@ -27,5 +27,22 @@ router.get('/del', nodemysql.del);
 
 /* 按需查找 */
 router.get('/choose', nodemysql.choose);
+
+/* 动态路由 */
+router.get('/active/:id', nodemysql.active);
+// 展示test
+router.get('/test', (req, res) => {
+    res.render('test');
+});
+
+// 获取信息页面
+router.get('/getmes/:a/:b', nodemysql.getmes);
+// (req, res) => {
+//     res.render('getmes');
+
+// });
+
+/* 查看接口 */
+router.get('/query', nodemysql.query);
 // connection.end();
 module.exports = router;

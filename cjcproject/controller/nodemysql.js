@@ -99,10 +99,61 @@ const choose = (req, res) => {
         res.send(result);
     });
 };
+// 动态路由
+const active = (req, res) => {
+    res.render('active');
+    // console.log(req.params.id);
+    // let id = req.params.id;
+    var delSql = `SELECT * FROM posts WHERE id=${id}`; // 模糊搜索
+    connection.query(delSql, function (err, result) {
+        if (err) {
+            console.log('[DELETE ERROR] - ', err.message);
+            return;
+        }
+
+        console.log('DELETE affectedRows', result.affectedRows);
+        res.send(result);
+    });
+};
+
+// 查看接口
+const query = (req, res) => {
+
+    var delSql = 'SELECT * FROM mock_api';
+
+    connection.query(delSql, function (err, result) {
+        if (err) {
+            console.log('[DELETE ERROR] - ', err.message);
+            return;
+        }
+
+        console.log('DELETE affectedRows', result.affectedRows);
+        res.send(result);
+    });
+};
+// 动态路由
+const getmes = (req, res) => {
+    let api_name = req.query.api_name;
+    var delSql = `SELECT * FROM mock_data WHERE name_data='${api_name}'`;
+    console.log(req.query.api_name);
+
+    connection.query(delSql, function (err, result) {
+        if (err) {
+            console.log('[DELETE ERROR] - ', err.message);
+            return;
+        }
+
+        console.log('DELETE affectedRows', result.affectedRows);
+        res.send(result);
+    });
+};
 module.exports = {
     find,
     add,
     change,
     del,
-    choose
+    choose,
+    active,
+    query,
+    getmes
 };
